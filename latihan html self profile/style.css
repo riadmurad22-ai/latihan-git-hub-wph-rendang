@@ -1,0 +1,47 @@
+/* Styling untuk halaman-halaman internal */
+.page-content {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Styling Khusus Linimasa (Timeline) */
+.timeline-item {
+  border-left: 4px solid #007bff; /* Garis vertikal biru */
+  padding: 0 0 20px 20px; /* Padding kiri untuk konten */
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* Titik lingkaran di awal setiap item */
+.timeline-item::before {
+  content: "•"; /* Menggunakan bullet point sebagai titik */
+  position: absolute;
+  left: -13px; /* Memosisikan titik di garis biru */
+  top: 0;
+  font-size: 20px;
+  color: #007bff;
+  background-color: white; /* Agar titik tidak tertutup garis */
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.timeline-item h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 1.4em;
+}
+
+.company-info {
+  color: #555;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+.duration {
+  color: #888;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}

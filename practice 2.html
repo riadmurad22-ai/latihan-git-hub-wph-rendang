@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Sembako Online</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9;
+    }
+    header {
+      background: #28a745; color: white;
+      padding: 15px; text-align: center;
+    }
+    .container {
+      width: 90%; max-width: 1000px;
+      margin: 20px auto;
+    }
+    .produk {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+    }
+    .card img {
+      width: 100%; height: 150px; object-fit: cover;
+    }
+    .card button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      background: #28a745; color: white;
+      cursor: pointer; border-radius: 3px;
+    }
+    .card button:hover { background: #218838; }
+    #keranjang {
+      margin-top: 30px;
+      padding: 15px;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #333; color: white;
+      text-align: center; padding: 10px; margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛒 Toko Sembako Online</h1>
+    <p>Belanja mudah, hemat, dan cepat!</p>
+  </header>
+
+  <div class="container">
+    <h2>Produk Kami</h2>
+    <div class="produk" id="daftar-produk"></div>
+
+    <div id="keranjang">
+      <h2>Keranjang Belanja</h2>
+      <ul id="list-keranjang"></ul>
+      <p><strong>Total: Rp <span id="total">0</span></strong></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Toko Sembako Online. Semua Hak Dilindungi.</p>
+  </footer>
+
+  <script>
+    const produk = [
+      { id: 1, nama: "Beras 5kg", harga: 65000, img: "https://via.placeholder.com/200?text=Beras" },
+      { id: 2, nama: "Minyak Goreng 1L", harga: 20000, img: "https://via.placeholder.com/200?text=Minyak" },
+      { id: 3, nama: "Gula Pasir 1kg", harga: 15000, img: "https://via.placeholder.com/200?text=Gula" },
+      { id: 4, nama: "Telur Ayam 1kg", harga: 28000, img: "https://via.placeholder.com/200?text=Telur" }
+    ];
+
+    let keranjang = [];
+
+    function renderProduk() {
+      const daftarProduk = document.getElementById("daftar-produk");
+      daftarProduk.innerHTML = "";
+      produk.forEach(item => {
+        daftarProduk.innerHTML += `
+          <div class="card">
+            <img src="${item.img}" alt="${item.nama}">
+            <h3>${item.nama}</h3>
+            <p>Rp ${item.harga.toLocaleString()}</p>
+            <button onclick="tambahKeranjang(${item.id})">Tambah</button>
+          </div>
+        `;
+      });
+    }
+
+    function tambahKeranjang(id) {
+      const item = produk.find(p => p.id === id);
+      keranjang.push(item);
+      renderKeranjang();
+    }
+
+    function renderKeranjang() {
+      const listKeranjang = document.getElementById("list-keranjang");
+      listKeranjang.innerHTML = "";
+      let total = 0;
+      keranjang.forEach((item, index) => {
+        total += item.harga;
+        listKeranjang.innerHTML += `
+          <li>${item.nama} - Rp ${item.harga.toLocaleString()} 
+            <button onclick="hapusKeranjang(${index})">❌</button>
+          </li>
+        `;
+      });
+      document.getElementById("total").innerText = total.toLocaleString();
+    }
+
+    function hapusKeranjang(index) {
+      keranjang.splice(index, 1);
+      renderKeranjang();
+    }
+
+    renderProduk();
+  </script>
+</body>
+</html>

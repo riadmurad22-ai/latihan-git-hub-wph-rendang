@@ -1,0 +1,89 @@
+/* --- RESET DAN FONT DASAR --- */
+body {
+    /* Menggunakan font yang mudah dibaca */
+    font-family: 'Arial', sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Warna latar belakang halaman yang lembut */
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    padding: 30px 0;
+    margin: 0;
+    /* Warna yang mewakili kesegaran atau tanah (sembako) */
+    color: #00796b; 
+    background-color: #e0f2f1;
+    border-bottom: 2px solid #004d40;
+}
+
+/* --- TAMPILAN PRODUK (GRID) --- */
+.product-grid {
+    /* Membuat layout responsif dengan CSS Grid */
+    display: grid; 
+    /* Menentukan jumlah kolom. Minimal 1 item, maksimal 300px lebar per item */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; /* Jarak antar kotak produk */
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto; /* Tengah di halaman */
+}
+
+.product-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Sudut membulat */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+    transition: transform 0.3s;
+}
+
+.product-item:hover {
+    /* Sedikit efek naik saat mouse di atas produk */
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* --- GAMBAR PRODUK --- */
+.product-item img {
+    max-width: 100%;
+    height: 200px; /* Atur tinggi gambar agar seragam */
+    object-fit: cover; /* Memastikan gambar mengisi ruang tanpa terdistorsi */
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* --- JUDUL DAN HARGA --- */
+.product-item h2 {
+    font-size: 1.3em;
+    color: #388e3c; /* Warna hijau untuk menarik perhatian */
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.product-item p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #d32f2f; /* Warna merah untuk harga (agar menonjol) */
+    margin-bottom: 15px;
+}
+
+/* --- TOMBOL WHATSAPP --- */
+.whatsapp-button {
+    display: block;
+    background-color: #25D366; /* Hijau WhatsApp asli */
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 25px; /* Tombol berbentuk pil */
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s;
+}
+
+.whatsapp-button:hover {
+    /* Sedikit warna lebih gelap saat disentuh */
+    background-color: #128C7E; 
+}
