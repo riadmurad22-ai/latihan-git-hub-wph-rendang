@@ -1,0 +1,432 @@
+/* ================================================= */
+/* GLOBAL RESET & VARIABLES */
+/* ================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Warna Dasar */
+  --primary-color: #5555ff; /* Warna Ungu/Biru Tombol CTA */
+  --secondary-color: #212121; /* Warna Latar Belakang Bagian */
+  --bg-dark: #000000; /* Latar Belakang Paling Gelap/Hitam Penuh */
+  --text-light: #ffffff; /* Warna Teks Utama */
+  --text-faded: #a0a0a0; /* Warna Teks Sekunder/Deskripsi */
+  --border-color: #303030; /* Warna Garis/Border */
+
+  /* Font */
+  --font-family: "Inter", sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-light);
+  background-color: var(--bg-dark);
+}
+
+/* Container untuk Membatasi Lebar Konten di Desktop */
+.container {
+  max-width: 1100px; /* Sesuaikan lebar max sesuai desain Figma */
+  margin: 0 auto;
+  padding: 0 20px; /* Padding samping untuk mencegah konten menempel di tepi */
+}
+
+/* Gaya Tautan */
+a {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* Gaya Tombol */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.3s, opacity 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cta {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 15px 40px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Judul dan Deskripsi Umum */
+h1 {
+  font-size: 3.5em;
+  font-weight: 800;
+}
+h2 {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+h3 {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.section-description {
+  color: var(--text-faded);
+  font-size: 1.2em;
+  max-width: 700px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.section-description-small {
+  color: var(--text-faded);
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+section {
+  padding: 80px 0; /* Jarak vertikal antar section di desktop */
+}
+
+/* ================================================= */
+/* HEADER & NAVIGATION */
+/* ================================================= */
+
+.site-header {
+  background-color: var(--bg-dark);
+  padding: 20px 0;
+  position: fixed; /* Header tetap di atas */
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.main-nav a {
+  font-weight: 500;
+}
+
+.btn-cta {
+  margin-left: 30px;
+}
+
+/* ================================================= */
+/* HERO SECTION */
+/* ================================================= */
+
+.hero-section {
+  /* Padding di atas untuk memberi ruang pada fixed header */
+  padding: 160px 0 100px;
+  background-color: var(--bg-dark);
+  /* Gradient yang lebih halus dari desain */
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  overflow: hidden;
+}
+
+.hero-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 50%;
+  padding-right: 40px;
+}
+
+.hero-text h1 {
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  color: var(--text-faded);
+  margin-bottom: 40px;
+  line-height: 1.8;
+  max-width: 450px;
+}
+
+.hero-image {
+  flex: 1;
+  max-width: 50%;
+  text-align: right;
+  position: relative;
+}
+
+.hero-image img {
+  /* Gambar seolah-olah diletakkan di tangan */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* Geser sedikit ke kanan agar terlihat menonjol */
+  transform: translateX(10%);
+}
+
+/* ================================================= */
+/* WHO WE ARE SECTION */
+/* ================================================= */
+
+.who-we-are-section {
+  background-color: var(--secondary-color);
+  text-align: center;
+}
+
+/* ================================================= */
+/* WHAT WE DO SECTION */
+/* ================================================= */
+
+.what-we-do-section {
+  text-align: center;
+}
+
+.service-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.service-card {
+  /* Layout 3 kolom */
+  width: calc(33.333% - 14px);
+  background-color: var(--secondary-color);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.service-card .icon {
+  /* Placeholder untuk icon SVG */
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.service-card h3 {
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: var(--text-faded);
+}
+
+/* ================================================= */
+/* OUR WORK SECTION */
+/* ================================================= */
+
+.our-work-section {
+  text-align: center;
+}
+
+.portfolio-cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.portfolio-card {
+  /* Layout 3 kolom */
+  width: calc(33.333% - 20px);
+  text-align: left;
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.portfolio-caption {
+  margin-top: 10px;
+  color: var(--text-faded);
+}
+
+/* ================================================= */
+/* MEET THE TEAM SECTION */
+/* ================================================= */
+
+.meet-the-team-section {
+  text-align: center;
+  background-color: var(--secondary-color);
+}
+
+.team-cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.team-member-card {
+  /* Layout 4 kolom */
+  width: calc(25% - 15px);
+}
+
+.member-photo {
+  width: 100%;
+  /* Gunakan rasio aspek 1:1 untuk gambar profil */
+  padding-bottom: 100%;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.member-photo img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%; /* Membuat gambar bundar */
+  border: 3px solid var(--border-color);
+}
+
+.team-member-card h3 {
+  margin-bottom: 5px;
+}
+
+.team-member-card p {
+  color: var(--text-faded);
+}
+
+/* ================================================= */
+/* CONTACT SECTION */
+/* ================================================= */
+
+.contact-section {
+  text-align: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form .btn-primary {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ================================================= */
+/* FOOTER */
+/* ================================================= */
+
+.site-footer {
+  padding: 30px 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.site-footer p {
+  color: var(--text-faded);
+  font-size: 0.9em;
+}
+
+/* Media Query untuk mobile (Optional: untuk memastikan mobile juga terlihat baik) */
+@media (max-width: 768px) {
+  .header-content,
+  .hero-content-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .main-nav ul {
+    margin-top: 10px;
+    gap: 15px;
+  }
+
+  .btn-cta {
+    display: none; /* Sembunyikan CTA di nav mobile jika diperlukan */
+  }
+
+  .hero-text,
+  .hero-image {
+    max-width: 100%;
+    padding-right: 0;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5em;
+  }
+
+  .hero-image {
+    margin-top: 40px;
+  }
+
+  .service-card,
+  .portfolio-card,
+  .team-member-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .portfolio-cards-container,
+  .team-cards-container,
+  .service-cards-container {
+    flex-direction: column;
+  }
+}
