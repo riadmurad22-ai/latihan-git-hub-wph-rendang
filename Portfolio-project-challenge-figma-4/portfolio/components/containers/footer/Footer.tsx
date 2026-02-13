@@ -97,7 +97,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="bg-black text-foreground flex justify-center py-8">
-        <p> &copy; 2026 Riad Murad. All rights reserved.</p>
+        <p> &copy; {new Date().getFullYear()} Riad Murad. All rights reserved.</p>
       </div>
     </main>
   );

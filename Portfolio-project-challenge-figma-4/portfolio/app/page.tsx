@@ -7,16 +7,76 @@ import Portfolio from "@/components/containers/portfolio/portfolio";
 import Skillset from "@/components/containers/skillset/Skillset";
 import Testimonial from "@/components/containers/testimonial/Testimonial";
 import WorkExperience from "@/components/containers/work-experience/WorkExperience";
+import gridPattern from "@/assets/svg/pattern/grid.svg";
+import ellipse1 from "@/assets/svg/pattern/ellipse1.svg";
+import ellipse2 from "@/assets/svg/pattern/ellipse2.svg";
+import ellipse3 from "@/assets/svg/pattern/ellipse3.svg";
+import ellipse4 from "@/assets/svg/pattern/ellipse4.svg";
+import Image from "next/image";
+import Navbar from "@/components/containers/navbar/Navbar";
 
 export default function Home() {
   return (
-    <main className="bg-white">
-      <section id="hero" className="bg-background main-spacing text-foreground">
-        <Hero />
+    <main className="bg-white ">
+      <section
+        id="hero"
+        className="bg-background text-foreground relative overflow-hidden"
+      >
+        <Navbar />
+
+        <div className="main-spacing">
+          <Hero />
+        </div>
+
+        <div className="absolute bottom-0 rotate-180">
+          <Image
+            alt="grid pattern"
+            src={gridPattern}
+            className="w-screen h-100 object-cover"
+          />
+        </div>
+        <div className="absolute top-0 ">
+          <Image
+            alt="grid pattern"
+            src={gridPattern}
+            className="w-screen h-100 object-cover"
+          />
+        </div>
+        <div className="absolute top-30 lg:top-120">
+          <Image
+            alt="grid pattern"
+            src={ellipse1}
+            className="object-cover lg:w-160 blur-lg lg:scale-400 "
+          />
+        </div>
+        <div className="absolute -right-20 top-20">
+          <Image
+            alt="grid pattern"
+            src={ellipse2}
+            className="object-cover lg:scale-200 blur-sm"
+          />
+        </div>
+
+        <div className="absolute top-20  lg:left-100">
+          <Image
+            alt="grid pattern"
+            src={ellipse3}
+            className="object-cover  blur-sm scale-400 "
+          />
+        </div>
+        <div className="absolute -bottom-5 lg:-bottom-200">
+          <Image
+            alt="grid pattern"
+            src={ellipse4}
+            className="w-screen object-fill "
+          />
+        </div>
       </section>
 
-      <section id="about" className="main-spacing">
-        <About />
+      <section id="about">
+        <div className="main-spacing">
+          <About />
+        </div>
       </section>
 
       <section id="skillset" className="mt-8">

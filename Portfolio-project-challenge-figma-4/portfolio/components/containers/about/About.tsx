@@ -17,6 +17,7 @@ import html from "@/assets/img/tech/html.png";
 import react from "@/assets/img/tech/react.png";
 import chevronRight from "@/assets/svg/Chevron-right.svg";
 import letter from "@/assets/svg/letter.svg";
+import dot from "@/assets/svg/pattern/dot.svg";
 
 interface IListTech {
   id: number;
@@ -65,13 +66,16 @@ export default function About() {
         </h1>
       </div>
       <div className="lg:grid lg:grid-cols-5 lg:gap-8">
-        <Card className="bg-primary-200 text-foreground mb-4 lg:col-span-3 lg:h-110">
+        <Card className="bg-linear-to-br from-primary-300 to-primary-200 text-foreground mb-4 lg:col-span-3 lg:h-110 relative">
+          <div className="absolute top-0 left-0">
+            <Image alt="dot-pattern" src={dot} />
+          </div>
           <CardHeader>
             <div className="flex gap-4">
               <Image alt="avatar" src={Avatar} className="h-12 w-12" />
               <div>
                 <p>Riad Murad</p>
-                <p className="font-light">riadmurad@gmail.com</p>
+                <p className="font-light">riadmurad22@gmail.com</p>
               </div>
             </div>
           </CardHeader>

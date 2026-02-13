@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   return (
-    <nav className="p-5.5 text-foreground md:px-20">
+    <nav className="bg-transparent w-full p-5.5 text-foreground md:px-20">
       <div className="flex items-center justify-between">
         <div className="flex gap-4 items-center">
           <Image alt="Avatar" src={Avatar} className="h-10.5 w-10.5" />
@@ -14,11 +14,11 @@ export default function Navbar() {
         </div>
 
         <ul className="hidden lg:flex lg:gap-12 ">
-          <li>Home</li>
-          <li>About</li>
-          <li>Skill</li>
-          <li>Project</li>
-          <li>FAQ</li>
+          <li className="text-shadow-black">Home</li>
+          <li className="text-shadow-black">About</li>
+          <li className="text-shadow-black">Skill</li>
+          <li className="text-shadow-black">Project</li>
+          <li className="text-shadow-black">FAQ</li>
         </ul>
 
         <div className="hidden lg:block">
