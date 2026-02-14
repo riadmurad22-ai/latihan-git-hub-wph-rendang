@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image, { StaticImageData } from "next/image";
@@ -26,128 +28,151 @@ interface IListTech {
 }
 
 const listTech: IListTech[] = [
-  {
-    id: 1,
-    icon: css,
-    position: "bottom-23 -left-4",
-  },
-  {
-    id: 2,
-    icon: js,
-    position: "bottom-38 left-16",
-  },
-  {
-    id: 3,
-    icon: ts,
-    position: "top-26 right-1/2 translate-x-1/2",
-  },
-  {
-    id: 4,
-    icon: html,
-    position: "bottom-38 right-16",
-  },
-  {
-    id: 5,
-    icon: react,
-    position: "bottom-23 -right-4",
-  },
+  { id: 1, icon: css, position: "bottom-12 -left-4" },
+  { id: 2, icon: js, position: "bottom-32 left-10" },
+  { id: 3, icon: ts, position: "top-10 left-1/2 -translate-x-1/2" },
+  { id: 4, icon: html, position: "bottom-32 right-10" },
+  { id: 5, icon: react, position: "bottom-12 -right-4" },
 ];
 
 export default function About() {
   return (
-    <main className="bg-white mt-16">
-      <div className="flex flex-col gap-4 mb-4 items-center ">
-        <Button variant={"outline"} className="bg-white rounded-full w-16 p-2">
-          <p className="text-black font-bold">About</p>
-        </Button>
+    // TAMBAHKAN id="about" agar bisa diakses dari Navbar
+    <section id="about" className="bg-white py-20 px-4 md:px-8">
+      {/* Header Section */}
+      <div className="flex flex-col gap-4 mb-10 items-center">
+        <div className="border border-neutral-200 bg-white rounded-full px-6 py-1 shadow-sm">
+          <p className="text-black font-bold text-sm">About</p>
+        </div>
 
-        <h1 className="text-3xl font-extrabold text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-neutral-900">
           The Developer Behind the Pixel
-        </h1>
+        </h2>
       </div>
-      <div className="lg:grid lg:grid-cols-5 lg:gap-8">
-        <Card className="bg-linear-to-br from-primary-300 to-primary-200 text-foreground mb-4 lg:col-span-3 lg:h-110 relative">
-          <div className="absolute top-0 left-0">
+
+      {/* Grid Content */}
+      <div className="lg:grid lg:grid-cols-5 lg:gap-6 max-w-7xl mx-auto">
+        {/* Card 1: Bio & Socials */}
+        <Card className="bg-linear-to-br from-primary-300 to-primary-200 text-foreground mb-4 lg:col-span-3 lg:h-110 relative overflow-hidden border-none shadow-md">
+          <div className="absolute top-0 left-0 opacity-40">
             <Image alt="dot-pattern" src={dot} />
           </div>
-          <CardHeader>
-            <div className="flex gap-4">
-              <Image alt="avatar" src={Avatar} className="h-12 w-12" />
+          <CardHeader className="relative z-10 pt-8">
+            <div className="flex gap-4 items-center">
+              <Image
+                alt="avatar"
+                src={Avatar}
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full border-2 border-white shadow-sm"
+              />
               <div>
-                <p>Riad Murad</p>
-                <p className="font-light">riadmurad22@gmail.com</p>
+                <p className="font-bold text-lg">Riad Murad</p>
+                <p className="font-medium text-neutral-600 text-sm">
+                  riadmurad22@gmail.com
+                </p>
               </div>
             </div>
           </CardHeader>
-          <CardContent className="flex gap-3 mb-24">
-            <Image alt="avatar" src={facebook} className="h-10 w-10" />
-            <Image alt="avatar" src={ig} className="h-10 w-10" />
-            <Image alt="avatar" src={linkedin} className="h-10 w-10" />
-            <Image alt="avatar" src={tiktok} className="h-10 w-10" />
+
+          <CardContent className="flex gap-3 mb-10 relative z-10">
+            {[facebook, ig, linkedin, tiktok].map((icon, i) => (
+              <div
+                key={i}
+                className="hover:scale-110 transition-transform cursor-pointer"
+              >
+                <Image
+                  alt="social-icon"
+                  src={icon}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10"
+                />
+              </div>
+            ))}
           </CardContent>
-          <CardContent>
-            <h1 className="text-3xl mb-2">
+
+          <CardContent className="relative z-10">
+            <h3 className="text-2xl md:text-3xl mb-3 font-bold leading-tight max-w-md">
               Pushing boundaries through innovation
-            </h1>
-            <p>
+            </h3>
+            <p className="text-neutral-700 text-base md:text-lg max-w-lg">
               I create frontend solutions that not only look good but also load
               fast, work everywhere, and scale well.
             </p>
           </CardContent>
         </Card>
 
-        <Card className="mb-4 h-68 bg-cream flex items-center relative lg:col-span-2 lg:h-110">
+        {/* Card 2: Developer Avatar 3D */}
+        <Card className="mb-4 h-80 bg-stone-100 flex items-center justify-center relative lg:col-span-2 lg:h-110 overflow-hidden border-none shadow-sm">
           <Image
             src={hideveloper}
-            alt="developer"
-            className="w-62 h-62 absolute bottom-0"
+            alt="3d developer illustration"
+            className="w-full h-auto absolute bottom-0 object-contain max-h-[95%]"
           />
         </Card>
-        <Card className="mb-4 bg-dark text-foreground relative lg:col-span-2 lg:h-125 lg:overflow-hidden">
-          <CardHeader>
-            <div className="flex items-center">
+
+        {/* Card 3: Portfolio Check */}
+        <Card className="mb-4 bg-zinc-900 text-white relative lg:col-span-2 lg:h-125 overflow-hidden border-none">
+          <CardHeader className="pt-8">
+            <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-xl mb-2 font-bold">Check My Portfolio</h1>
-                <p className="text-base/8">
-                  Explore selected works and real-world projects
+                <h3 className="text-xl font-bold mb-1">Check My Portfolio</h3>
+                <p className="text-sm text-neutral-400">
+                  Explore selected works and projects
                 </p>
               </div>
-              <div className="border border-neutral-500/40 h-10 w-10 rounded-full flex items-center justify-center">
-                <Image alt="next" src={chevronRight} />
+              <div className="border border-neutral-700 h-10 w-10 rounded-full flex items-center justify-center bg-neutral-800 hover:bg-primary transition-all cursor-pointer group">
+                <Image
+                  alt="arrow icon"
+                  src={chevronRight}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </div>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex justify-center p-0">
             <Image
-              alt="portfolio"
+              alt="portfolio preview"
               src={portfolioImage}
-              className="lg:h-100 lg:w-100"
+              className="rounded-t-xl shadow-2xl mt-6 object-cover"
             />
           </CardContent>
         </Card>
-        <Card className="lg:col-span-2 lg:h-125 overflow-hidden mb-4 h-87 bg-linear-to-b from-secondary to-orange-500 flex items-center justify-end relative">
-          <CardContent className="mb-4">
-            <div className="w-60">
-              <p className="font-bold text-neutral-900 text-2xl text-center">
-                Built with 10+ Trusted Technologies
-              </p>
-            </div>
+
+        {/* Card 4: Tech Stack Floating */}
+        <Card className="lg:col-span-2 lg:h-125 overflow-hidden mb-4 h-87 bg-linear-to-b from-secondary to-orange-400 flex items-center justify-center relative px-6 border-none shadow-lg">
+          <CardContent className="relative z-10">
+            <p className="font-extrabold text-neutral-900 text-2xl text-center leading-snug">
+              Built with 10+ <br /> Trusted Technologies
+            </p>
           </CardContent>
-          {listTech.map((content) => {
-            return (
-              <div
-                key={content.id}
-                className={`absolute h-18 w-18 bg-white/60 rounded-full flex justify-center items-center ${content.position}`}
-              >
-                <Image alt="css" src={content.icon} className="w-9 h-9" />
-              </div>
-            );
-          })}
+          {listTech.map((content) => (
+            <div
+              key={content.id}
+              className={`absolute h-16 w-16 bg-white/90 backdrop-blur-md rounded-2xl flex justify-center items-center shadow-xl transition-all hover:-translate-y-2 ${content.position}`}
+            >
+              <Image
+                alt="tech icon"
+                src={content.icon}
+                width={36}
+                height={36}
+                className="w-9 h-9"
+              />
+            </div>
+          ))}
         </Card>
-        <Button className="bg-primary-200 w-full rounded-full h-12 lg:h-125 lg:rounded-xl">
-          <Image alt="message" src={letter} />
+
+        {/* Card 5: Large Contact Button */}
+        <Button className="bg-primary-200 hover:bg-primary-300 w-full rounded-2xl h-16 lg:col-span-1 lg:h-125 lg:rounded-3xl transition-all shadow-lg flex items-center justify-center group border-none">
+          <div className="bg-white p-3 rounded-full group-hover:rotate-12 transition-transform shadow-sm">
+            <Image alt="message icon" src={letter} width={28} height={28} />
+          </div>
+          <span className="lg:hidden ml-3 font-bold text-lg">
+            Send a Message
+          </span>
         </Button>
       </div>
-    </main>
+    </section>
   );
 }

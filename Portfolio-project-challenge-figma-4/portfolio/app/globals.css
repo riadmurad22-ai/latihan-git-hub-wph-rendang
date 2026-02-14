@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Playwrite+GB+J+Guides:ital@0;1&display=swap');
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Playwrite+GB+J+Guides:ital@0;1&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-mulish: 'Mulish', sans-serif;
+  --font-mulish: "Mulish", sans-serif;
   --color-neutral-25: var(--neutral-25);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -144,4 +144,8 @@
 
 .half-ratio {
   aspect-ratio: 1/2;
+}
+
+html {
+  scroll-behavior: smooth;
 }
