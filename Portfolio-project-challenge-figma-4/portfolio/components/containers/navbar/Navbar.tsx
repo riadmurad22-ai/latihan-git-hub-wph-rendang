@@ -6,7 +6,7 @@ import Link from "next/link";
 import Avatar from "@/assets/img/avatar.png";
 import Burger from "@/assets/svg/burger.svg";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react"; // Import ikon silang untuk tutup menu mobile
+import { X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,9 +14,30 @@ export default function Navbar() {
   // Fungsi untuk scroll halus dan menutup menu mobile
   const handleScroll = (id: string) => {
     setIsOpen(false);
+    
+    // Logika khusus untuk Home: Kembali ke paling atas halaman
+    if (id === "home") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    // Logika untuk section lainnya
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      // Kita beri offset sedikit (misal 80px) agar judul section tidak tertutup Navbar fixed
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -26,7 +47,7 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 z-50 w-full p-4 md:px-20 bg-black/50 backdrop-blur-md border-b border-white/10 text-white">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           {/* KIRI: Logo & Nama */}
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center cursor-pointer" onClick={() => handleScroll("home")}>
             <Image
               alt="Avatar"
               src={Avatar}
@@ -68,17 +89,19 @@ export default function Navbar() {
 
           {/* MOBILE: Burger Menu Button */}
           <div
-            className="lg:hidden cursor-pointer p-2"
+            className="lg:hidden cursor-pointer p-2 flex items-center"
             onClick={() => setIsOpen(true)}
           >
-            <Image alt="menu" src={Burger} className="w-6 h-6 invert" />
+            <Image alt="menu" src={Burger} className="w-8 h-8 brightness-0 invert" />
           </div>
         </div>
       </nav>
 
-      {/* MOBILE MENU OVERLAY (Sesuai image_2244c1.png) */}
+      {/* MOBILE MENU OVERLAY */}
       <div
-        className={`fixed inset-0 z-60 bg-white transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"} lg:hidden`}
+        className={`fixed inset-0 z-60 bg-white transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        } lg:hidden`}
       >
         <div className="p-6">
           {/* Header Mobile Menu */}
@@ -91,9 +114,9 @@ export default function Navbar() {
                 height={35}
                 className="rounded-full"
               />
-              <span className="font-bold text-black">Riad Murad</span>
+              <span className="font-bold text-black text-xl">Riad Murad</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-black">
+            <button onClick={() => setIsOpen(false)} className="text-black p-2">
               <X className="w-8 h-8" />
             </button>
           </div>
@@ -105,12 +128,10 @@ export default function Navbar() {
                 key={item}
                 onClick={() =>
                   handleScroll(
-                    item.toLowerCase() === "projects"
-                      ? "project"
-                      : item.toLowerCase(),
+                    item.toLowerCase() === "projects" ? "project" : item.toLowerCase()
                   )
                 }
-                className="text-left text-2xl font-semibold text-black hover:text-blue-500"
+                className="text-left text-3xl font-bold text-black hover:text-[#3B82F6] transition-colors"
               >
                 {item}
               </button>
@@ -120,7 +141,7 @@ export default function Navbar() {
           {/* Tombol Hire Me Mobile */}
           <div className="mt-12">
             <Button
-              className="w-full bg-[#3B82F6] hover:bg-blue-600 py-7 rounded-2xl text-white font-bold text-lg"
+              className="w-full bg-[#3B82F6] hover:bg-blue-600 py-8 rounded-2xl text-white font-bold text-xl shadow-xl transition-transform active:scale-95"
               onClick={() => handleScroll("contact")}
             >
               Hire Me
