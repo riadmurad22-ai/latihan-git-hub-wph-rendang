@@ -14,12 +14,13 @@ const listMyPower = [
 
 export default function Experience() {
   return (
-    <main className="mt-12">
+    /* Gunakan id="experience" agar bisa diakses dari Navbar jika perlu */
+    <section id="experience" className="mt-12 py-10">
       <div className="flex flex-col items-center mb-8">
         <Button
           variant={"outline"}
           size={"sm"}
-          className="bg-white rounded-full px-4 mb-2"
+          className="bg-white rounded-full px-4 mb-2 border-neutral-200"
         >
           <p className="text-black font-bold">Superiority</p>
         </Button>
@@ -31,7 +32,7 @@ export default function Experience() {
         </div>
       </div>
 
-      <div className="md:flex gap-4">
+      <div className="md:flex gap-4 px-4 md:px-0 max-w-6xl mx-auto">
         <CardSuperiority avatar={developer} list={listMyPower} />
         <CardSuperiority
           avatar={defaultAvatar}
@@ -40,11 +41,14 @@ export default function Experience() {
         />
       </div>
 
-      <div className="md:flex md:justify-center">
-        <Button className="h-12 mt-8 w-full bg-primary-200 rounded-full md:w-80">
-          <p className="text-lg">Hire Me</p>
-        </Button>
+      <div className="md:flex md:justify-center px-4 mt-8">
+        {/* Tambahkan Anchor Link ke ID Contact */}
+        <a href="#contact" className="w-full md:w-80">
+          <Button className="h-14 w-full bg-[#3B82F6] hover:bg-blue-600 rounded-full text-white transition-all active:scale-95 shadow-lg">
+            <p className="text-lg font-bold">Hire Me</p>
+          </Button>
+        </a>
       </div>
-    </main>
+    </section>
   );
 }
