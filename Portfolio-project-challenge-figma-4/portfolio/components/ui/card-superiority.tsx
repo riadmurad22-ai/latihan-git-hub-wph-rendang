@@ -8,7 +8,7 @@ interface CardSuperiorityProps {
   bg?: string;
   list: string[];
   avatar: StaticImageData;
-  className?: string; // Tambahkan ini agar komponen lebih fleksibel
+  className?: string; // Tambah ini agar komponen lebih fleksibel
 }
 
 export default function CardSuperiority({
@@ -18,7 +18,7 @@ export default function CardSuperiority({
   className,
 }: CardSuperiorityProps) {
   return (
-    // Gunakan fungsi 'cn' untuk menggabungkan class agar lebih bersih
+    // fungsi 'cn' untuk menggabungkan class agar lebih bersih
     <Card className={cn(bg, "mt-4 pt-6 pb-0 md:flex-1", className)}>
       <CardHeader className="flex flex-col justify-center items-center">
         {/* Gunakan CardTitle (h3) bukan h1 untuk hierarki yang benar */}

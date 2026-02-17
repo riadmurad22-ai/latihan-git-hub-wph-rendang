@@ -27,7 +27,7 @@ const listSkill: IListSkill[] = [
 
 export default function Skillset() {
   return (
-    // UBAH main MENJADI section DAN TAMBAHKAN id="skill"
+    // UBAH main MENJADI section DAN TAMBAH id="skill"
     <section
       id="skill"
       className="py-20 bg-primary-200 text-foreground flex flex-col items-center"

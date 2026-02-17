@@ -37,7 +37,7 @@ const listTech: IListTech[] = [
 
 export default function About() {
   return (
-    // TAMBAHKAN id="about" agar bisa diakses dari Navbar
+    // TAMBAHAN id="about" agar bisa diakses dari Navbar
     <section id="about" className="bg-white py-20 px-4 md:px-8">
       {/* Header Section */}
       <div className="flex flex-col gap-4 mb-10 items-center">

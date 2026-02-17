@@ -14,7 +14,7 @@ export default function Navbar() {
   // Fungsi untuk scroll halus dan menutup menu mobile
   const handleScroll = (id: string) => {
     setIsOpen(false);
-    
+
     // Logika khusus untuk Home: Kembali ke paling atas halaman
     if (id === "home") {
       window.scrollTo({
@@ -27,7 +27,7 @@ export default function Navbar() {
     // Logika untuk section lainnya
     const element = document.getElementById(id);
     if (element) {
-      // Kita beri offset sedikit (misal 80px) agar judul section tidak tertutup Navbar fixed
+      // Offset sedikit (misal 80px) agar judul section tidak tertutup Navbar fixed
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
@@ -47,7 +47,10 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 z-50 w-full p-4 md:px-20 bg-black/50 backdrop-blur-md border-b border-white/10 text-white">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           {/* KIRI: Logo & Nama */}
-          <div className="flex gap-4 items-center cursor-pointer" onClick={() => handleScroll("home")}>
+          <div
+            className="flex gap-4 items-center cursor-pointer"
+            onClick={() => handleScroll("home")}
+          >
             <Image
               alt="Avatar"
               src={Avatar}
@@ -92,7 +95,11 @@ export default function Navbar() {
             className="lg:hidden cursor-pointer p-2 flex items-center"
             onClick={() => setIsOpen(true)}
           >
-            <Image alt="menu" src={Burger} className="w-8 h-8 brightness-0 invert" />
+            <Image
+              alt="menu"
+              src={Burger}
+              className="w-8 h-8 brightness-0 invert"
+            />
           </div>
         </div>
       </nav>
@@ -128,7 +135,9 @@ export default function Navbar() {
                 key={item}
                 onClick={() =>
                   handleScroll(
-                    item.toLowerCase() === "projects" ? "project" : item.toLowerCase()
+                    item.toLowerCase() === "projects"
+                      ? "project"
+                      : item.toLowerCase(),
                   )
                 }
                 className="text-left text-3xl font-bold text-black hover:text-[#3B82F6] transition-colors"

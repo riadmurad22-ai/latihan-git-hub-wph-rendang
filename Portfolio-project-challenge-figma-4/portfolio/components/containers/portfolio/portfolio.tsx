@@ -26,8 +26,8 @@ const listPortfolio: { title: string; image: StaticImageData }[] = [
 export default function Portfolio() {
   return (
     // 1. Ganti <main> menjadi <section>
-    // 2. Tambahkan id="project"
-    // 3. Tambahkan py-20 agar ada jarak saat mendarat (scroll)
+    // 2. Tambah id="project"
+    // 3. Tambah py-20 agar ada jarak saat mendarat (scroll)
     <section id="project" className="py-20 flex flex-col items-center bg-white">
       {/* Header Section */}
       <div className="flex flex-col items-center mb-12">

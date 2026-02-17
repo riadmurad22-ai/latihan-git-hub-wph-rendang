@@ -14,7 +14,7 @@ const listMyPower = [
 
 export default function Experience() {
   return (
-    /* Gunakan id="experience" agar bisa diakses dari Navbar jika perlu */
+    /* id="experience" agar bisa diakses dari Navbar jika perlu */
     <section id="experience" className="mt-12 py-10">
       <div className="flex flex-col items-center mb-8">
         <Button
@@ -42,7 +42,7 @@ export default function Experience() {
       </div>
 
       <div className="md:flex md:justify-center px-4 mt-8">
-        {/* Tambahkan Anchor Link ke ID Contact */}
+        {/* Tambah Anchor Link ke ID Contact */}
         <a href="#contact" className="w-full md:w-80">
           <Button className="h-14 w-full bg-[#3B82F6] hover:bg-blue-600 rounded-full text-white transition-all active:scale-95 shadow-lg">
             <p className="text-lg font-bold">Hire Me</p>
