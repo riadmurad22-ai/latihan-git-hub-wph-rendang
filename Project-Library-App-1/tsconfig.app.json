@@ -7,7 +7,7 @@
     "skipLibCheck": true,
 
     /* Tambahkan baris ini untuk menghilangkan error baseUrl */
-    "ignoreDeprecations": "5.0",
+    "ignoreDeprecations": "6.0",
 
     "baseUrl": ".",
     "paths": {
