@@ -1,8 +1,6 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  // HAPUS "/api-swagger" di ujungnya. Ganti jadi "/api" saja.
-  // Ini adalah SATU-SATUNYA cara agar server mengirim data buku, bukan halaman web.
   baseURL: "https://library-backend-production-b9cf.up.railway.app/api-swagger",
 });
 

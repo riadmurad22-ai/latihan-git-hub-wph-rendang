@@ -15,13 +15,11 @@ const Books = () => {
   const [books, setBooks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fungsi untuk mengambil data buku dari backend Railway
   const fetchBooks = async () => {
     try {
       setLoading(true);
       const response = await axiosInstance.get("/books");
 
-      // Logika pencegahan freeze jika server mengirim HTML Swagger bukannya JSON
       if (
         typeof response.data === "string" &&
         response.data.includes("<!DOCTYPE html>")
@@ -33,7 +31,6 @@ const Books = () => {
         return;
       }
 
-      // Menangani berbagai kemungkinan struktur folder data dari API
       const actualData =
         response.data?.data ||
         (Array.isArray(response.data) ? response.data : []);
@@ -47,7 +44,7 @@ const Books = () => {
 
   useEffect(() => {
     fetchBooks();
-  }, [isAuthenticated]); // Refresh jika status login berubah
+  }, [isAuthenticated]); 
 
   // Fungsi hapus buku
   const handleDelete = async (id: string) => {

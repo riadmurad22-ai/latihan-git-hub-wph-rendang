@@ -25,14 +25,12 @@ const AddBook = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      // Mengirimkan payload sesuai kebutuhan backend Railway
       await axiosInstance.post("/books", {
         ...formData,
-        rating: 5, // Default rating agar tidak error di database
+        rating: 5, 
       });
 
       alert("Buku berhasil ditambahkan ke perpustakaan!");
-      // Paksa navigasi ke root untuk memicu fetch ulang di Books.tsx
       navigate("/", { replace: true });
     } catch (error: any) {
       console.error("Error detail:", error.response?.data);
