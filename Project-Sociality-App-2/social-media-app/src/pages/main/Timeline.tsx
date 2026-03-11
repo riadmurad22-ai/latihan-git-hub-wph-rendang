@@ -8,14 +8,15 @@ interface Post {
   handle: string;
   content: string;
   time: string;
+  likes: number;
 }
 
 export default function Timeline() {
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
   const [content, setContent] = useState("");
+  const [likedPosts, setLikedPosts] = useState<number[]>([]);
 
-  // Data awal dummy
   const [posts, setPosts] = useState<Post[]>([
     {
       id: 1,
@@ -24,6 +25,7 @@ export default function Timeline() {
       content:
         "Selamat datang di Sociality! Ayo mulai berbagi cerita hari ini.",
       time: "1h",
+      likes: 12,
     },
     {
       id: 2,
@@ -32,63 +34,74 @@ export default function Timeline() {
       content:
         "Aplikasi ini keren banget, UI-nya dapet banget nuansa dark mode-nya.",
       time: "30m",
+      likes: 5,
     },
   ]);
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
+  const toggleLike = (id: number) => {
+    if (likedPosts.includes(id)) {
+      setLikedPosts(likedPosts.filter((postId) => postId !== id));
+    } else {
+      setLikedPosts([...likedPosts, id]);
+    }
   };
 
   const handlePost = () => {
     if (!content.trim()) return;
-
     const newPost: Post = {
       id: Date.now(),
-      user: "User Ganteng", // Nanti bisa ambil dari data user login
+      user: "User Ganteng",
       handle: "@user_test",
       content: content,
       time: "Just now",
+      likes: 0,
     };
-
     setPosts([newPost, ...posts]);
     setContent("");
   };
 
   return (
     <div className="flex min-h-screen bg-black text-white">
-      {/* --- SIDEBAR KIRI --- */}
+      {/* SIDEBAR */}
       <aside className="w-64 border-r border-gray-800 p-6 hidden md:block sticky top-0 h-screen">
         <h2 className="text-3xl font-black mb-8 text-purple-500 italic">S.</h2>
         <nav className="space-y-6 text-lg">
-          <div className="flex items-center gap-3 text-purple-400 font-bold cursor-pointer">
+          <div
+            onClick={() => navigate("/timeline")}
+            className="flex items-center gap-3 text-purple-400 font-bold cursor-pointer"
+          >
             <span>🏠</span> Home
           </div>
-          <div className="flex items-center gap-3 hover:text-purple-400 cursor-pointer transition">
+          <div className="flex items-center gap-3 hover:text-purple-400 cursor-pointer transition text-gray-400">
             <span>🔍</span> Explore
           </div>
-          <div className="flex items-center gap-3 hover:text-purple-400 cursor-pointer transition">
+          <div
+            onClick={() => navigate("/profile")}
+            className="flex items-center gap-3 hover:text-purple-400 cursor-pointer transition text-gray-400"
+          >
             <span>👤</span> Profile
           </div>
         </nav>
         <button
-          onClick={handleLogout}
+          onClick={() => {
+            logout();
+            navigate("/login");
+          }}
           className="mt-12 w-full py-3 border border-red-500/50 text-red-500 rounded-xl hover:bg-red-500/10 transition-all font-semibold"
         >
           Logout
         </button>
       </aside>
 
-      {/* --- FEED TENGAH --- */}
+      {/* FEED */}
       <main className="flex-1 max-w-2xl border-r border-gray-800">
         <header className="sticky top-0 bg-black/60 backdrop-blur-xl p-4 border-b border-gray-800 z-10">
           <h1 className="text-xl font-bold">Home Feed</h1>
         </header>
 
-        {/* Form Create Post */}
         <div className="p-4 border-b border-gray-800">
           <div className="flex gap-4">
-            <div className="w-12 h-12 rounded-full bg-linear-tr from-purple-500 to-pink-500 shrink-0" />
+            <div className="w-12 h-12 rounded-full bg-linear-to-tr from-purple-500 to-pink-500 shrink-0" />
             <div className="flex-1">
               <textarea
                 value={content}
@@ -99,9 +112,9 @@ export default function Timeline() {
               />
               <div className="flex justify-between items-center pt-3 border-t border-gray-900 mt-2">
                 <div className="flex gap-4 text-purple-500 text-sm">
-                  <span className="cursor-pointer">🖼️</span>
-                  <span className="cursor-pointer">📊</span>
-                  <span className="cursor-pointer">😀</span>
+                  <span>🖼️</span>
+                  <span>📊</span>
+                  <span>😀</span>
                 </div>
                 <button
                   onClick={handlePost}
@@ -115,7 +128,6 @@ export default function Timeline() {
           </div>
         </div>
 
-        {/* List Postingan */}
         <div className="divide-y divide-gray-800">
           {posts.map((post) => (
             <div
@@ -143,9 +155,16 @@ export default function Timeline() {
                     <span className="hover:text-green-400 flex items-center gap-1 transition">
                       🔄 0
                     </span>
-                    <span className="hover:text-red-400 flex items-center gap-1 transition">
-                      ❤️ 0
-                    </span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleLike(post.id);
+                      }}
+                      className={`flex items-center gap-1 transition ${likedPosts.includes(post.id) ? "text-red-500 font-bold" : "hover:text-red-400"}`}
+                    >
+                      {likedPosts.includes(post.id) ? "❤️" : "🤍"}{" "}
+                      {post.likes + (likedPosts.includes(post.id) ? 1 : 0)}
+                    </button>
                     <span className="hover:text-purple-400 flex items-center gap-1 transition">
                       📊 0
                     </span>
@@ -157,7 +176,7 @@ export default function Timeline() {
         </div>
       </main>
 
-      {/* --- TRENDING KANAN --- */}
+      {/* TRENDING */}
       <aside className="w-80 p-6 hidden lg:block sticky top-0 h-screen">
         <div className="bg-[#16181c] p-3 rounded-full mb-6 border border-transparent focus-within:border-purple-500 focus-within:bg-black transition-all">
           <input
@@ -171,12 +190,6 @@ export default function Timeline() {
           <div className="hover:bg-white/3 p-4 cursor-pointer transition">
             <p className="text-xs text-gray-500">Trending in Tech</p>
             <p className="font-bold">#ReactJS_2026</p>
-            <p className="text-xs text-gray-500">12.5K Posts</p>
-          </div>
-          <div className="hover:bg-white/3 p-4 cursor-pointer transition">
-            <p className="text-xs text-gray-500">Programming</p>
-            <p className="font-bold">#TailwindV4</p>
-            <p className="text-xs text-gray-500">8,234 Posts</p>
           </div>
           <p className="p-4 text-purple-400 text-sm hover:bg-white/3 cursor-pointer">
             Show more
