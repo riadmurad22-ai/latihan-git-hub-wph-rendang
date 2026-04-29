@@ -1,43 +1,32 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+// src/components/BookCard.tsx
+import { Book } from "@/types/book";
 
-interface BookProps {
-  book: {
-    id: number;
-    title: string;
-    author: string;
-    description: string;
-    cover_image?: string;
-  };
+interface BookCardProps {
+  book: Book;
+  onBorrow: () => void;
 }
 
-const BookCard = ({ book }: BookProps) => {
+const BookCard = ({ book, onBorrow }: BookCardProps) => {
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="h-48 bg-slate-200 flex items-center justify-center">
-        {book.cover_image ? (
-          <img
-            src={book.cover_image}
-            alt={book.title}
-            className="object-cover h-full w-full"
-          />
-        ) : (
-          <span className="text-slate-400 italic">No Cover</span>
-        )}
-      </div>
-      <CardHeader className="p-4">
-        <CardTitle className="text-lg line-clamp-1">{book.title}</CardTitle>
-        <p className="text-sm text-slate-500 font-medium">{book.author}</p>
-      </CardHeader>
-      <CardContent className="p-4 pt-0">
-        <p className="text-xs text-slate-600 line-clamp-2 mb-4">
-          {book.description}
-        </p>
-        <Button className="w-full" size="sm">
-          Pinjam Buku
-        </Button>
-      </CardContent>
-    </Card>
+    <div className="border p-4 rounded shadow-sm bg-white">
+      <h3 className="font-bold text-lg">{book.title}</h3>
+      <p className="text-gray-600">Penulis: {book.author}</p>
+      <p className="mt-2">
+        Stok tersedia: <span className="font-bold">{book.stock}</span>
+      </p>
+
+      <button
+        onClick={onBorrow}
+        disabled={book.stock <= 0}
+        className={`mt-4 w-full py-2 rounded text-white ${
+          book.stock > 0
+            ? "bg-blue-600 hover:bg-blue-700"
+            : "bg-gray-400 cursor-not-allowed"
+        }`}
+      >
+        {book.stock > 0 ? "Pinjam Sekarang" : "Stok Habis"}
+      </button>
+    </div>
   );
 };
 

@@ -6,7 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Tambahkan baris ini untuk menghilangkan error baseUrl */
+    /* 1. Tambahkan baris ini untuk membungkam peringatan baseUrl */
     "ignoreDeprecations": "6.0",
 
     "baseUrl": ".",
@@ -21,7 +21,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Setel ke false agar error "any" tidak menggagalkan Vercel */
+    /* 2. Pastikan strict false agar error tipe data tidak menggagalkan Vercel */
     "strict": false
   },
   "include": ["src"]
