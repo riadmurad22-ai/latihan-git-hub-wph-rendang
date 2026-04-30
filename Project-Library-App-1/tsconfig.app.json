@@ -7,7 +7,7 @@
     "skipLibCheck": true,
 
     /* 1. Tambahkan baris ini untuk membungkam peringatan baseUrl */
-    "ignoreDeprecations": "6.0",
+    //"ignoreDeprecations": "6.0",
 
     "baseUrl": ".",
     "paths": {
